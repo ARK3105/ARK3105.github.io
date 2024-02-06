@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog 1</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Add some styles to highlight the like button */
+    #likeBtn.highlight {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 style="text-align: center;">Blog </h1>
+  <a href="https://gooyaabitemplates.com/sportsmag-blogger-template/" style="font-size: xx-large;">View Blog</a>
+
+  <div class="interaction-section">
+    <button id="likeBtn">Like</button>
+    <span id="likeCount">0 likes</span>
+
+    <div id="commentsSection">
+      <h2>Comments</h2>
+      <ul id="commentsList"></ul>
+
+      <textarea id="commentInput" placeholder="Add a comment"></textarea>
+      <button id="addCommentBtn">Add Comment</button>
+    </div>
+  </div>
+
+  <script>
+    // Simple JavaScript for like and comments functionality
+    let isLiked = false;
+    let likeCount = 0;
+
+    const likeBtn = document.getElementById('likeBtn');
+    const likeCountSpan = document.getElementById('likeCount');
+    const commentsList = document.getElementById('commentsList');
+    const commentInput = document.getElementById('commentInput');
+
+    likeBtn.addEventListener('click', function() {
+      isLiked = !isLiked;
+      likeBtn.classList.toggle('highlight', isLiked);
+      updateLikeCount();
+    });
+
+    document.getElementById('addCommentBtn').addEventListener('click', function() {
+      const commentText = commentInput.value.trim();
+      if (commentText !== '') {
+        addComment(commentText);
+        commentInput.value = '';
+      }
+    });
+
+    function updateLikeCount() {
+      likeCount = isLiked ? 1 : 0;
+      likeCountSpan.textContent = likeCount + (likeCount === 1 ? ' like' : ' likes');
+    }
+
+    function addComment(commentText) {
+      const li = document.createElement('li');
+      li.textContent = commentText;
+      commentsList.appendChild(li);
+    }
+  </script>
+
+</body>
+</html>
